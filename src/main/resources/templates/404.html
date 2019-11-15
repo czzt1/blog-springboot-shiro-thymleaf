@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta englishText="webkit" name="renderer">
+    <meta englishText="IE=edge" http-equiv="X-UA-Compatible">
+    <meta englishText="width=device-width, initial-scale=1" name="viewport">
+    <title>404错误！很抱歉，您要找的页面不存在</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/nprogress.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/images/icon/icon.png" rel="apple-touch-icon-precomposed">
+    <link href="../static/images/icon/favicon.ico" rel="shortcut icon">
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/nprogress.js"></script>
+    <script src="../static/js/jquery.lazyload.min.js"></script>
+    <!--[if gte IE 9]>
+    <script src="../static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/html5shiv.min.js" type="text/javascript"></script>
+    <script src="../static/js/respond.min.js" type="text/javascript"></script>
+    <script src="../static/js/selectivizr-min.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script>window.location.href = 'upgrade-browser.html';</script>
+    <![endif]-->
+    <style type="text/css">
+        .panel {
+            padding: 80px 20px 0;
+            min-height: 500px;
+            cursor: default;
+        }
+
+        .text-center {
+            margin: 0 auto;
+            text-align: center;
+            border-radius: 10px;
+            max-width: 900px;
+            -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+            -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+            box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+
+        }
+
+        .float-left {
+            float: left !important;
+        }
+
+        .float-right {
+            float: right !important;
+        }
+
+        img {
+            border: 0;
+            vertical-align: bottom;
+        }
+
+        h2 {
+            padding-top: 20px;
+            font-size: 20px;
+        }
+
+        .padding-big {
+            padding: 20px;
+        }
+
+        .alert {
+            border-radius: 5px;
+            padding: 15px;
+            border: solid 1px #ddd;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body class="user-select">
+<header class="header" th:include="common :: header">
+</header>
+<section class="container">
+    <div class="panel">
+        <div class="text-center">
+            <h2>
+                404错误！很抱歉，您要找的页面不存在
+            </h2>
+            <div>
+                <div class="float-left"><img alt="" src="../static/images/404/left.gif"/>
+                    <div class="alert"> 卧槽！页面不见了！</div>
+                </div>
+                <div class="float-right"><img alt="" class="hidden-xs" src="../static/images/404/right.png"
+                                              width="260"/></div>
+            </div>
+            <div class="padding-big"><a class="btn btn-primary" href="/index">返回首页</a> <a class="btn btn-default"
+                                                                                    href="feedback">保证不打死管理员</a></div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2016 <a href="">ylsat.com</a> &nbsp; <a href="http://www.miitbeian.gov.cn/" rel="nofollow"
+                                                          target="_blank">豫ICP备20151109-1</a> &nbsp; <a class="sitemap"
+                                                                                                        href="sitemap.xml"
+                                                                                                        target="_blank">网站地图</a>
+        </p>
+    </div>
+    <div id="gotop"><a class="gotop"></a></div>
+</footer>
+<!--微信二维码模态框-->
+<div aria-labelledby="WeChatModalLabel" class="modal fade user-select" id="WeChat" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document" style="margin-top:120px;width:280px;">
+        <div class="modal-englishText">
+            <div class="modal-header">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
+            </div>
+            <div class="modal-body" style="text-align:center"><img alt="" src="../static/images/weixin.jpg"
+                                                                   style="cursor:pointer"/></div>
+        </div>
+    </div>
+</div>
+<!--该功能正在日以继夜的开发中-->
+<div aria-labelledby="areDevelopingModalLabel" class="modal fade user-select" id="areDeveloping" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-englishText">
+            <div class="modal-header">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
+            </div>
+            <div class="modal-body">
+                <img alt="深思熟虑" src="../static/images/baoman/baoman_01.gif"/>
+                <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">
+                    很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" type="button">朕已阅</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="rightClickMenu">
+    <ul class="list-group rightClickMenuList">
+        <li class="list-group-item disabled">欢迎访问异清轩博客</li>
+        <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
+        <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
+        <li class="list-group-item"><span>系统：</span>Windows10</li>
+        <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
+    </ul>
+</div>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery.ias.js"></script>
+<script src="../static/js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="webkit" name="renderer">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>异清轩博客文章页面</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/nprogress.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/images/icon/icon.png" rel="apple-touch-icon-precomposed">
+    <link href="../static/images/icon/favicon.ico" rel="shortcut icon">
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/nprogress.js"></script>
+    <script src="../static/js/jquery.lazyload.min.js"></script>
+    <!--[if gte IE 9]>
+    <script src="../static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/html5shiv.min.js" type="text/javascript"></script>
+    <script src="../static/js/respond.min.js" type="text/javascript"></script>
+    <script src="../static/js/selectivizr-min.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script>window.location.href = 'upgrade-browser.html';</script>
+    <![endif]-->
+</head>
+
+<body class="user-select single">
+<header class="header">
+    <nav class="navbar navbar-default" id="navbar">
+        <div class="container">
+            <div class="header-topbar hidden-xs link-border">
+                <ul class="site-nav topmenu">
+                    <li><a href="tags.html">标签云</a></li>
+                    <li><a href="readers.html" rel="nofollow">读者墙</a></li>
+                    <li><a href="links.html" rel="nofollow">友情链接</a></li>
+                    <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" rel="nofollow">关注本站 <span class="caret"></span></a>
+                      <ul class="dropdown-menu header-topbar-dropdown-menu">
+                        <li><a data-toggle="modal" data-target="#WeChat" rel="nofollow"><i class="fa fa-weixin"></i> 微信</a></li>
+                        <li><a href="#" rel="nofollow"><i class="fa fa-weibo"></i> 微博</a></li>
+                        <li><a data-toggle="modal" data-target="#areDeveloping" rel="nofollow"><i class="fa fa-rss"></i> RSS</a></li>
+                      </ul>
+                    </li> -->
+                </ul>
+                <a class="login" href="javascript:" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;<a class="register"
+                                                                                            href="javascript:"
+                                                                                            rel="nofollow">我要注册</a>&nbsp;&nbsp;<a
+                    href="" rel="nofollow">找回密码</a></div>
+            <div class="navbar-header">
+                <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#header-navbar"
+                        data-toggle="collapse" type="button"><span class="sr-only"></span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+                <h1 class="logo hvr-bounce-in"><a href="" title=""><img alt="" src="../static/images/logo.png"></a></h1>
+            </div>
+            <div class="collapse navbar-collapse" id="header-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden-index active"><a data-cont="异清轩首页" href="index.html">异清轩首页</a></li>
+                    <li><a href="category.html">前端技术</a></li>
+                    <li><a href="category.html">后端程序</a></li>
+                    <li><a href="category.html">管理系统</a></li>
+                    <li><a href="category.html">授人以渔</a></li>
+                    <li><a href="category.html">程序人生</a></li>
+                </ul>
+                <form action="/Search" class="navbar-form visible-xs" method="post">
+                    <div class="input-group">
+                        <input autocomplete="off" class="form-control" maxlength="20" name="keyword"
+                               placeholder="请输入关键字"
+                               type="text">
+                        <span class="input-group-btn">
+            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+            </span></div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class="container">
+    <div class="content-wrap">
+        <div class="content">
+            <header class="article-header">
+                <h1 class="article-title"><a href="article.html" th:text="${article.getTitle()}"></a></h1>
+                <div class="article-meta"> <span class="item article-meta-time">
+          <time class="time" data-placement="bottom" data-toggle="tooltip" th:text="${article.getCrt_date()}"><i
+                  class="glyphicon glyphicon-time"></i></time>
+          </span> <span class="item article-meta-source" data-placement="bottom" data-toggle="tooltip"
+                        th:title="${article.getSource_name()}"><i class="glyphicon glyphicon-globe"></i> <span
+                        th:text="${article.getSource_name()}"></span></span> <span
+                        class="item article-meta-category" data-placement="bottom" data-toggle="tooltip"
+                        title="栏目：后端程序"><i class="glyphicon glyphicon-list"></i> <a href="program"
+                                                                                    title="">后端程序</a></span> <span
+                        class="item article-meta-views" data-placement="bottom" data-toggle="tooltip"
+                        th:title="'查看: '+${article.getView_count()}"><i
+                        class="glyphicon glyphicon-eye-open"></i> <span
+                        th:text="'共'+${article.getView_count()}+'人围观'"></span></span> <span
+                        class="item article-meta-comment"
+                        data-placement="bottom"
+                        data-toggle="tooltip"
+                        th:text="'评论:'+${article.getComment_count()}" th:title="'评论:'+${article.getComment_count()}"><i
+                        class="glyphicon glyphicon-comment"></i></span></div>
+            </header>
+            <article class="article-content" th:utext="${article.getBody()}">
+            </article>
+            <div class="article-tags">
+                标签：<span th:each="label :${article.getLabelList()}"><a href="" rel="tag" th:text="${label}"></a></span>
+            </div>
+            <div class="relates">
+                <div class="title">
+                    <h3>相关推荐</h3>
+                </div>
+                <ul>
+                    <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+                    <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+                    <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+                    <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+                    <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+                    <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+                    <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+                    <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+                </ul>
+            </div>
+            <div class="title" id="comment">
+                <h3>评论
+                    <small>抢沙发</small>
+                </h3>
+            </div>
+            <!--<div id="respond">
+              <div class="comment-signarea">
+                <h3 class="text-muted">评论前必须登录！</h3>
+                <p> <a href="javascript:;" class="btn btn-primary login" rel="nofollow">立即登录</a> &nbsp; <a href="javascript:;" class="btn btn-default register" rel="nofollow">注册</a> </p>
+                <h3 class="text-muted">当前文章禁止评论</h3>
+              </div>
+            </div>-->
+            <div id="respond">
+                <form action="" id="comment-form" method="post">
+                    <div class="comment">
+                        <div class="comment-title"><img alt="" class="avatar" src="../static/images/icon/icon.png"/>
+                        </div>
+                        <div class="comment-box">
+                            <textarea cols="100%" id="comment-textarea" name="comment" placeholder="您的评论可以一针见血" rows="3"
+                                      tabindex="1"></textarea>
+                            <div class="comment-ctrl"><span class="emotion"><img alt=""
+                                                                                 height="20"
+                                                                                 src="../static/images/face/5.png"
+                                                                                 width="20"/>表情</span>
+                                <div class="comment-prompt"><i class="fa fa-spin fa-circle-o-notch"></i> <span
+                                        class="comment-prompt-text"></span></div>
+                                <input class="articleid" type="hidden" value="1"/>
+                                <button articleid="1" id="comment-submit" name="comment-submit" tabindex="5"
+                                        type="submit">评论
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="postcomments">
+                <ol class="commentlist">
+                    <li class="comment-content"><span class="comment-f">#1</span>
+                        <div class="comment-avatar"><img alt="" class="avatar" src="../static/images/icon/icon.png"/>
+                        </div>
+                        <div class="comment-main" th:each="comment:${commentList}">
+                            <p>来自<span class="address" th:text="${comment.getAuthor_area()}"></span>的用户<span
+                                    class="time" th:text="${comment.getComment_time()}"></span><br/>
+                                <span th:text="${comment.getContent()}"></span></p>
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="quotes"><span class="disabled">首页</span><span class="disabled">上一页</span><a class="current">1</a><a
+                        href="">2</a><span class="disabled">下一页</span><span class="disabled">尾页</span></div>
+            </div>
+        </div>
+    </div>
+    <aside class="sidebar">
+        <div class="fixed">
+            <div class="widget widget-tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active" role="presentation"><a aria-controls="notice" data-toggle="tab" href="#notice"
+                                                              role="tab">网站公告</a></li>
+                    <li role="presentation"><a aria-controls="centre" data-toggle="tab" href="#centre"
+                                               role="tab">会员中心</a></li>
+                    <li role="presentation"><a aria-controls="contact" data-toggle="tab" href="#contact"
+                                               role="tab">联系站长</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane notice active" id="notice" role="tabpanel">
+                        <ul>
+                            <li>
+                                <time datetime="2016-01-04">01-04</time>
+                                <a href="" target="_blank">欢迎访问异清轩博客</a></li>
+                            <li>
+                                <time datetime="2016-01-04">01-04</time>
+                                <a href="" target="_blank">在这里可以看到前端技术，后端程序，网站内容管理系统等文章，还有我的程序人生！</a></li>
+                            <li>
+                                <time datetime="2016-01-04">01-04</time>
+                                <a href="" target="_blank">在这个小工具中最多可以调用五条</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane centre" id="centre" role="tabpanel">
+                        <h4>需要登录才能进入会员中心</h4>
+                        <p><a class="btn btn-primary" href="javascript:">立即登录</a> <a class="btn btn-default"
+                                                                                     href="javascript:">现在注册</a>
+                        </p>
+                    </div>
+                    <div class="tab-pane contact" id="contact" role="tabpanel">
+                        <h2>Email:<br/>
+                            <a data-placement="bottom" data-toggle="tooltip" href="mailto:admin@ylsat.com"
+                               title="admin@ylsat.com">admin@ylsat.com</a></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="widget widget_search">
+                <form action="/Search" class="navbar-form" method="post">
+                    <div class="input-group">
+                        <input autocomplete="off" class="form-control" maxlength="15" name="keyword"
+                               placeholder="请输入关键字"
+                               size="35" type="text">
+                        <span class="input-group-btn">
+            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+            </span></div>
+                </form>
+            </div>
+        </div>
+        <div class="widget widget_sentence">
+            <h3>每日一句</h3>
+            <div class="widget-sentence-content">
+                <h4 th:text="${dailySentence.getDateStr()}"></h4>
+                <p>
+                    <span th:text="${dailySentence.getEnglishText()}"></span><br/>
+                    <span th:text="${dailySentence.getChineseText()}"></span>
+                </p>
+            </div>
+        </div>
+        <div class="widget widget_hot">
+            <h3>热门文章</h3>
+            <ul>
+                <li><a href=""><span class="thumbnail"><img alt="" class="thumb"
+                                                            data-original="../static/images/excerpt.jpg"
+                                                            src="../static/images/excerpt.jpg"></span><span
+                        class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+                        class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+                        class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+                <li><a href=""><span class="thumbnail"><img alt="" class="thumb"
+                                                            data-original="../static/images/excerpt.jpg"
+                                                            src="../static/images/excerpt.jpg"></span><span
+                        class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+                        class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+                        class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+                <li><a href=""><span class="thumbnail"><img alt="" class="thumb"
+                                                            data-original="../static/images/excerpt.jpg"
+                                                            src="../static/images/excerpt.jpg"></span><span
+                        class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+                        class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+                        class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+                <li><a href=""><span class="thumbnail"><img alt="" class="thumb"
+                                                            data-original="../static/images/excerpt.jpg"
+                                                            src="../static/images/excerpt.jpg"></span><span
+                        class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+                        class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+                        class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+                <li><a href=""><span class="thumbnail"><img alt="" class="thumb"
+                                                            data-original="../static/images/excerpt.jpg"
+                                                            src="../static/images/excerpt.jpg"></span><span
+                        class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i
+                        class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i
+                        class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+            </ul>
+        </div>
+    </aside>
+</section>
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2016 <a href="">ylsat.com</a> &nbsp; <a href="http://www.miitbeian.gov.cn/" rel="nofollow"
+                                                          target="_blank">豫ICP备20151109-1</a> &nbsp; <a
+                class="sitemap" href="sitemap.xml" target="_blank">网站地图</a></p>
+    </div>
+    <div id="gotop"><a class="gotop"></a></div>
+</footer>
+<!--微信二维码模态框-->
+<div aria-labelledby="WeChatModalLabel" class="modal fade user-select" id="WeChat" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document" style="margin-top:120px;width:280px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
+            </div>
+            <div class="modal-body" style="text-align:center"><img alt="" src="../static/images/weixin.jpg"
+                                                                   style="cursor:pointer"/></div>
+        </div>
+    </div>
+</div>
+<!--该功能正在日以继夜的开发中-->
+<div aria-labelledby="areDevelopingModalLabel" class="modal fade user-select" id="areDeveloping" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
+            </div>
+            <div class="modal-body"><img alt="深思熟虑" src="../static/images/baoman/baoman_01.gif"/>
+                <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">
+                    很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" type="button">朕已阅</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="rightClickMenu">
+    <ul class="list-group rightClickMenuList">
+        <li class="list-group-item disabled">欢迎访问异清轩博客</li>
+        <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
+        <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
+        <li class="list-group-item"><span>系统：</span>Windows10</li>
+        <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
+    </ul>
+</div>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery.ias.js"></script>
+<script src="../static/js/scripts.js"></script>
+<script src="../static/js/jquery.qqFace.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.emotion').qqFace({
+            id: 'facebox',
+            assign: 'comment-textarea',
+            path: 'images/arclist/'	//表情存放的路径
+        });
+    });
+</script>
+</body>
+</html>

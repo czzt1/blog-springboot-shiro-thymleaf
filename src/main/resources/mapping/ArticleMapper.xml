@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czzt1.blog.mapper.ArticleMapper">
+    <resultMap id="selectArticle" type="com.czzt1.blog.pojo.Article">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <collection property="labelList" javaType="java.util.ArrayList" ofType="com.czzt1.blog.pojo.Label" select="getArticleLabel"  column="id">
+        </collection>
+    </resultMap>
+    <select id="select" parameterType="int" resultMap="selectArticle">
+        select id,
+        title,
+        DATE_FORMAT(crt_date,'%Y-%m-%e %H:%i:%S') crt_date,
+        source_name,
+        source_url,
+        view_count,
+        body,
+        short_text,
+        comment_count,
+        cover_img from article
+            where 1=1 and id =#{id}
+        <!--<if test=" id != null and id != 'null' and id != '' ">
+            id = #{id}
+        </if>-->
+        <!--<if test=" title != null and title != 'null' and title != '' ">
+            and title = #{title}
+        </if>
+        <if test=" crt_date != null and crt_date != 'null' and crt_date != '' ">
+            and crt_date = #{crt_date}
+        </if>
+        <if test=" view_count != null and view_count != 'null' and view_count != '' ">
+            and view_count = #{view_count}
+        </if>
+        <if test=" body != null and body != 'null' and body != '' ">
+            and body = #{body}
+        </if>
+        <if test=" cover_img != null and cover_img != 'null' and cover_img != '' ">
+            and cover_img = #{cover_img}
+        </if>-->
+    </select>
+    <select id="getArticleLabel" parameterType="int" resultType="com.czzt1.blog.pojo.Label">
+        select  label_name,label_id from article_label where article_id=#{0}
+    </select>
+    <select id="getListByLable" resultMap="selectArticle" parameterType="int">
+        select a.* from article a left join article_label b on a.id = b.article_id where b.label_id=#{0}
+    </select>
+    <select id="getCommentById" resultType="com.czzt1.blog.pojo.Comment" parameterType="int">
+        select  article_id,
+                author_area,
+                author_name,
+                content,
+                DATE_FORMAT(comment_time,'%Y-%m-%e %H:%i:%S') comment_time
+                from article_comment where article_id=#{0}
+    </select>
+    <select id="getListByHeat">
+        select * from article order by view_count,comment_count limit #{startIndex},#{endIndex}
+    </select>
+
+    <select id="countArticle" resultType="int">
+        select count(1) from article
+    </select>
+</mapper>

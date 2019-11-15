@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="webkit" name="renderer">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>异清轩博客</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/nprogress.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/images/icon/icon.png" rel="apple-touch-icon-precomposed">
+    <link href="../static/images/icon/favicon.ico" rel="shortcut icon">
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/js.cookie.min.js"></script>
+    <script src="../static/js/nprogress.js"></script>
+    <script src="../static/js/jquery.lazyload.min.js"></script>
+    <script src="../static/js/auth.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+    <script>window.location.href = 'upgrade-browser';</script>
+    <![endif]-->
+</head>
+
+<body class="user-select">
+<header class="header" th:include="common :: header"></header>
+<section class="container">
+    <div class="content-wrap">
+        <div class="content">
+            <div class="jumbotron">
+                <h1>欢迎访问异清轩博客</h1>
+                <p>在这里可以看到前端技术，后端程序，网站内容管理系统等文章，还有我的程序人生！</p>
+            </div>
+            <div class="carousel slide" data-ride="carousel" id="focusslide">
+                <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#focusslide"></li>
+                    <li data-slide-to="1" data-target="#focusslide"></li>
+                    <li data-slide-to="2" data-target="#focusslide"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active"><a href="" target="_blank"><img alt=""
+                                                                             class="img-responsive"
+                                                                             src="../static/images/banner/banner_01.jpg"></a>
+                        <!--<div class="carousel-caption"> </div>-->
+                    </div>
+                    <div class="item"><a href="" target="_blank"><img alt="" class="img-responsive"
+                                                                      src="../static/images/banner/banner_02.jpg"></a>
+                        <!--<div class="carousel-caption"> </div>-->
+                    </div>
+                    <div class="item"><a href="" target="_blank"><img alt="" class="img-responsive"
+                                                                      src="../static/images/banner/banner_03.jpg"></a>
+                        <!--<div class="carousel-caption"> </div>-->
+                    </div>
+                </div>
+                <a class="left carousel-control" data-slide="prev" href="#focusslide" rel="nofollow" role="button">
+                    <span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span> <span
+                        class="sr-only">上一个</span> </a> <a class="right carousel-control" data-slide="next"
+                                                           href="#focusslide" rel="nofollow" role="button"> <span
+                    aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span> <span
+                    class="sr-only">下一个</span> </a></div>
+            <article class="excerpt-minic excerpt-minic-index">
+                <h2><span class="red">【今日推荐】</span><a href="" title="">从下载看我们该如何做事</a></h2>
+                <p class="note">一次我下载几部电影，发现如果同时下载多部要等上几个小时，然后我把最想看的做个先后排序，去设置同时只能下载一部，结果是不到一杯茶功夫我就能看到最想看的电影。
+                    这就像我们一段时间内想干成很多事情，是同时干还是有选择有顺序的干，结果很不一样。同时...</p>
+            </article>
+            <div class="title">
+                <h3>最新发布</h3>
+                <div class="more"><a href="">PHP</a><a href="">JavaScript</a><a href="">EmpireCMS</a><a
+                        href="">Apache</a><a href="">MySQL</a></div>
+            </div>
+            <article class="excerpt excerpt-1"><a class="focus" href="article.html" title=""><img alt=""
+                                                                                                  class="thumb"
+                                                                                                  data-original="../static/images/excerpt.jpg"
+                                                                                                  src="../static/images/excerpt.jpg"></a>
+                <header><a class="cat" href="program">后端程序<i></i></a>
+                    <h2><a href="article.html" title="">php如何判断一个日期的格式是否正确</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-1-4 10:29:39</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> <a class="comment"
+                                                                                                       href="article.html#comment"><i
+                        class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
+                <p class="note">
+                    可以用strtotime()把日期（$date）转成时间戳，再用date()按需要验证的格式转成一个日期，来跟$date比较是否相同来验证这个日期的格式是否是正确的。所以要验证日期格式
+                    ... </p>
+            </article>
+            <article class="excerpt excerpt-2"><a class="focus" href="article.html" title=""><img alt=""
+                                                                                                  class="thumb"
+                                                                                                  data-original="../static/images/excerpt.jpg"
+                                                                                                  src="../static/images/excerpt.jpg"></a>
+                <header><a class="cat" href="program">后端程序<i></i></a>
+                    <h2><a href="article.html" title="">php如何判断一个日期的格式是否正确</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-1-4 10:29:39</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> <a class="comment"
+                                                                                                       href="article.html#comment"><i
+                        class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
+                <p class="note">
+                    可以用strtotime()把日期（$date）转成时间戳，再用date()按需要验证的格式转成一个日期，来跟$date比较是否相同来验证这个日期的格式是否是正确的。所以要验证日期格式
+                    ... </p>
+            </article>
+            <article class="excerpt excerpt-3"><a class="focus" href="article.html" title=""><img alt=""
+                                                                                                  class="thumb"
+                                                                                                  data-original="../static/images/excerpt.jpg"
+                                                                                                  src="../static/images/excerpt.jpg"></a>
+                <header><a class="cat" href="program">后端程序<i></i></a>
+                    <h2><a href="article.html" title="">php如何判断一个日期的格式是否正确</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-1-4 10:29:39</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> <a class="comment"
+                                                                                                       href="article.html#comment"><i
+                        class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
+                <p class="note">
+                    可以用strtotime()把日期（$date）转成时间戳，再用date()按需要验证的格式转成一个日期，来跟$date比较是否相同来验证这个日期的格式是否是正确的。所以要验证日期格式
+                    ... </p>
+            </article>
+            <article class="excerpt excerpt-4"><a class="focus" href="article.html" title=""><img alt=""
+                                                                                                  class="thumb"
+                                                                                                  data-original="../static/images/excerpt.jpg"
+                                                                                                  src="../static/images/excerpt.jpg"></a>
+                <header><a class="cat" href="program">后端程序<i></i></a>
+                    <h2><a href="article.html" title="">php如何判断一个日期的格式是否正确</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-1-4 10:29:39</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> <a class="comment"
+                                                                                                       href="article.html#comment"><i
+                        class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
+                <p class="note">
+                    可以用strtotime()把日期（$date）转成时间戳，再用date()按需要验证的格式转成一个日期，来跟$date比较是否相同来验证这个日期的格式是否是正确的。所以要验证日期格式
+                    ... </p>
+            </article>
+            <article class="excerpt excerpt-5"><a class="focus" href="article.html" title=""><img alt=""
+                                                                                                  class="thumb"
+                                                                                                  data-original="../static/images/excerpt.jpg"
+                                                                                                  src="../static/images/excerpt.jpg"></a>
+                <header><a class="cat" href="program">后端程序<i></i></a>
+                    <h2><a href="article.html" title="">php如何判断一个日期的格式是否正确</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-1-4 10:29:39</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> <a class="comment"
+                                                                                                       href="article.html#comment"><i
+                        class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
+                <p class="note">
+                    可以用strtotime()把日期（$date）转成时间戳，再用date()按需要验证的格式转成一个日期，来跟$date比较是否相同来验证这个日期的格式是否是正确的。所以要验证日期格式
+                    ... </p>
+            </article>
+            <!--分页条-->
+            <nav class="pagination" >
+                <ul>
+                    <li class="prev-page"></li>
+                    <li class="active"><span>1</span></li>
+                    <li><a href="?page=2">2</a></li>
+                    <li class="next-page"><a href="?page=2">下一页</a></li>
+                    <li><span>共 2 页</span></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <aside class="sidebar" th:include="common :: sidebar"></aside>
+</section>
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2016 <a href="">ylsat.com</a> &nbsp; <a href="http://www.miitbeian.gov.cn/" rel="nofollow"
+                                                          target="_blank">豫ICP备20151109-1</a> &nbsp; <a
+                class="sitemap" href="sitemap.xml" target="_blank">网站地图</a></p>
+    </div>
+    <div id="gotop"><a class="gotop"></a></div>
+</footer>
+<!--微信二维码模态框-->
+<div aria-labelledby="WeChatModalLabel" class="modal fade user-select" id="WeChat" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document" style="margin-top:120px;max-width:280px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
+            </div>
+            <div class="modal-body" style="text-align:center"><img alt="" src="../static/images/weixin.jpg"
+                                                                   style="cursor:pointer"/></div>
+        </div>
+    </div>
+</div>
+<!--该功能正在日以继夜的开发中-->
+<div aria-labelledby="areDevelopingModalLabel" class="modal fade user-select" id="areDeveloping" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
+            </div>
+            <div class="modal-body"><img alt="深思熟虑" src="../static/images/baoman/baoman_01.gif"/>
+                <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">
+                    很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" type="button">朕已阅</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--登录注册模态框-->
+<div aria-labelledby="loginModalLabel" class="modal fade user-select" id="loginModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="" id="loginForm" method="get">
+                <div class="modal-header">
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="loginModalLabel">登录</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="loginModalUserNmae">用户名</label>
+                        <input autocomplete="off" autofocus class="form-control" id="loginModalUserNmae" maxlength="15"
+                               placeholder="请输入用户名" required type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginModalUserPwd">密码</label>
+                        <input autocomplete="off" class="form-control" id="loginModalUserPwd" maxlength="18"
+                               placeholder="请输入密码" required type="password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+                    <button class="btn btn-primary" type="submit">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--注册对话框-->
+<div aria-labelledby="loginModalLabel" class="modal fade user-select" id="registerModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="" id="registerForm" method="get">
+                <div class="modal-header">
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="registerModalLabel">注册</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="registerModalUserNmae">用户名</label>
+                        <input autocomplete="off" autofocus class="form-control" id="registerModalUserNmae"
+                               maxlength="15"
+                               placeholder="请输入用户名" required type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerModalNickName">昵称</label>
+                        <input autocomplete="off" autofocus class="form-control" id="registerModalNickName"
+                               maxlength="15"
+                               placeholder="请输入用户名" required type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerModalUserPwd">密码</label>
+                        <input autocomplete="off" class="form-control" id="registerModalUserPwd" maxlength="18"
+                               placeholder="请输入密码" required type="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginModalUserPwd">密码</label>
+                        <input autocomplete="off" class="form-control" id="registerModalUserPwdRe" maxlength="18"
+                               placeholder="请再次输入密码" required type="password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+                    <button class="btn btn-primary" type="submit">注册</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--右键菜单列表-->
+<div id="rightClickMenu">
+    <ul class="list-group rightClickMenuList">
+        <li class="list-group-item disabled">欢迎访问异清轩博客</li>
+        <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
+        <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
+        <li class="list-group-item"><span>系统：</span>Windows10</li>
+        <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
+    </ul>
+</div>
+
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery.ias.js"></script>
+<script src="../static/js/scripts.js"></script>
+</body>
+</html>
