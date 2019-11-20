@@ -1,6 +1,5 @@
 package com.czzt1.blog.shiro.realm;
 
-import com.czzt1.blog.shiro.filter.ShiroLoginFilter;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.UserFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -12,7 +11,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * @author breeze1
@@ -80,6 +78,8 @@ public class ShiroConfig extends UserFilter {
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/index", "anon");
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/article", "anon");
+        filterChainDefinitionMap.put("/comment", "anon");
         // 除上以外所有url都必须认证通过才可以访问，未通过认证自动访问LoginUrl
         filterChainDefinitionMap.put("/**", "authc");
 

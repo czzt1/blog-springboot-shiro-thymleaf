@@ -39,10 +39,10 @@ public class UserAuthController {
             return ResponseUtil.generateResponse("500", "失败", new User());
         }
     }
-/*    @ResponseBody
-    @PostMapping("/logout")
+
+    /*@GetMapping("/logout")
     public String logout(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("message", "您已安全退出");
-        return "success";
+        return "index";
     }*/
 }

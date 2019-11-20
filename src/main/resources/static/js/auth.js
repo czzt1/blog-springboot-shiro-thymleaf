@@ -51,14 +51,23 @@ $(document).ready(function () {
         });
     });
 
+    //注销按钮事件
     $("#logoutButton").click(function (e) {
         e.preventDefault();
         alert('23');
+
+        Cookies.remove('rememberMe');
+        Cookies.remove('JSESSIONID');
+        Cookies.remove('username');
+        window.location.href = "/logout";
         /*$.ajax({
             type: "POST",
             url: "/logout",
             data: {
                 "registerModalUserNmae": '1'
+            },
+            error: function (result) {
+                alert(result);
             },
             success: function (result) {
                 if (result==='success'){
@@ -69,13 +78,12 @@ $(document).ready(function () {
                 }
             }
         });*/
-        Cookies.remove('rememberMe');
+        /*Cookies.remove('rememberMe');
         Cookies.remove('JSESSIONID');
         Cookies.remove('username');
-        window.location.href = "/index";
+        window.location.href = "/index";*/
 
     });
-
 });
 
 

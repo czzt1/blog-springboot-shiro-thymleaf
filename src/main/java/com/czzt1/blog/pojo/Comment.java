@@ -7,6 +7,15 @@ public class Comment {
     private String author_area;
     private String author_name;
     private String content;
+    private String userPic;
+
+    public String getUserPic() {
+        return userPic;
+    }
+
+    public void setUserPic(String userPic) {
+        this.userPic = userPic;
+    }
 
     public int getArticle_id() {
         return article_id;
@@ -51,13 +60,13 @@ public class Comment {
         this.content = content;
     }
 
-    public String getComment_time() {
+    public Date getComment_time() {
         return comment_time;
     }
 
-    public void setComment_time(String comment_time) {
+    public void setComment_time(Date comment_time) {
         this.comment_time = comment_time;
     }
 
-    private String comment_time;
+    private Date comment_time;
 }

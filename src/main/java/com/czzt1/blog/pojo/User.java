@@ -5,6 +5,15 @@ public class User {
     private String username;
     private String password;
     private int role_id;
+    private String userPic;
+
+    public String getUserPic() {
+        return userPic;
+    }
+
+    public void setUserPic(String userPic) {
+        this.userPic = userPic;
+    }
 
     public int getId() {
         return id;

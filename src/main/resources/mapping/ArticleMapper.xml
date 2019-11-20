@@ -44,12 +44,13 @@
         select a.* from article a left join article_label b on a.id = b.article_id where b.label_id=#{0}
     </select>
     <select id="getCommentById" resultType="com.czzt1.blog.pojo.Comment" parameterType="int">
-        select  article_id,
-                author_area,
-                author_name,
-                content,
-                DATE_FORMAT(comment_time,'%Y-%m-%e %H:%i:%S') comment_time
-                from article_comment where article_id=#{0}
+        select  a.article_id,
+                a.author_area,
+                a.author_name,
+                a.content,
+                DATE_FORMAT(a.comment_time,'%Y-%m-%e %H:%i:%S') comment_time,
+                IFNULL(b.userPic,'/static/images/icon/icon.png') as userPic
+                from article_comment a left join blog.User b on a.author_name=b.username where article_id=#{0}
     </select>
     <select id="getListByHeat">
         select * from article order by view_count,comment_count limit #{startIndex},#{endIndex}
