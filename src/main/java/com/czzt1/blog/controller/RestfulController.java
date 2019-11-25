@@ -1,15 +1,17 @@
 package com.czzt1.blog.controller;
 
-import com.czzt1.blog.mapper.ArticleMapper;
 import com.czzt1.blog.mapper.UserInfoMapper;
-import com.czzt1.blog.pojo.Article;
+import com.czzt1.blog.pojo.Comment;
 import com.czzt1.blog.pojo.UserInfo;
+import com.czzt1.blog.service.ArticleService;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,10 +21,11 @@ import java.util.Map;
 @RestController
 public class RestfulController {
     @Resource
-    private ArticleMapper articleMapper;
+    private ArticleService articleService;
     @Resource
     private UserInfoMapper userInfoMapper;
-
+    @Value("${pageSize}")
+    private int pageSize;
     /*@ResponseBody
     @RequestMapping(value = "/categoryList/{pageNum}",method = RequestMethod.GET)
     public String articleList(@PathVariable int pageNum){
@@ -78,10 +81,13 @@ public class RestfulController {
         return result;
     }
 
-    /*@ResponseBody
+    @ResponseBody
     @GetMapping(value = "/categoryList/{pageNum}")
     public String getHostArticleList(){
+        articleService.getHotArticle();
         return null;
-    }*/
+    }
+
+
 
 }

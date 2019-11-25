@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.czzt1.blog.mapper.ArticleMapper">
+
     <resultMap id="selectArticle" type="com.czzt1.blog.pojo.Article">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <collection property="labelList" javaType="java.util.ArrayList" ofType="com.czzt1.blog.pojo.Label" select="getArticleLabel"  column="id">
         </collection>
     </resultMap>
+
     <select id="select" parameterType="int" resultMap="selectArticle">
         select id,
         title,
@@ -37,12 +39,15 @@
             and cover_img = #{cover_img}
         </if>-->
     </select>
+
     <select id="getArticleLabel" parameterType="int" resultType="com.czzt1.blog.pojo.Label">
         select  label_name,label_id from article_label where article_id=#{0}
     </select>
+
     <select id="getListByLable" resultMap="selectArticle" parameterType="int">
         select a.* from article a left join article_label b on a.id = b.article_id where b.label_id=#{0}
     </select>
+
     <select id="getCommentById" resultType="com.czzt1.blog.pojo.Comment" parameterType="int">
         select  a.article_id,
                 a.author_area,
@@ -50,13 +55,18 @@
                 a.content,
                 DATE_FORMAT(a.comment_time,'%Y-%m-%e %H:%i:%S') comment_time,
                 IFNULL(b.userPic,'/static/images/icon/icon.png') as userPic
-                from article_comment a left join blog.User b on a.author_name=b.username where article_id=#{0}
+                from article_comment a left join blog.User b on a.author_name=b.username  where article_id=#{0} order by a.comment_time
     </select>
-    <select id="getListByHeat">
-        select * from article order by view_count,comment_count limit #{startIndex},#{endIndex}
+
+    <select id="getListByHeat" resultType="com.czzt1.blog.pojo.Article">
+        select * from article order by view_count,comment_count limit 1,5
     </select>
 
     <select id="countArticle" resultType="int">
         select count(1) from article
+    </select>
+
+    <select id="getListByCrtTime" resultMap="selectArticle">
+        select a.* from article a left join article_label b on a.id = b.article_id order by crt_date desc limit 1,10
     </select>
 </mapper>

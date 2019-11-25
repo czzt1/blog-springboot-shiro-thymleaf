@@ -2,6 +2,7 @@ package com.czzt1.blog.mapper;
 
 import com.czzt1.blog.pojo.Article;
 import com.czzt1.blog.pojo.Comment;
+import com.czzt1.blog.pojo.Label;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,11 +17,13 @@ public interface ArticleMapper {
 
     List<Article> getListByLable(int articleType);
 
-    List<String> getArticleLabel(String id);
+    List<Label> getArticleLabel(String id);
 
     List<Comment> getCommentById(int id);
 
     List<Article> getListByHeat();
 
     int countArticle();
+
+    List<Article> getListByCrtTime();
 }

@@ -36,4 +36,10 @@ public interface ArticleService {
      * @return
      */
     public int getTotalPageNum(int pageSize);
+
+    /**
+     * 返回最新文章列表
+     * @return 最新文章列表
+     */
+    public List<Article> getNewestArticle();
 }

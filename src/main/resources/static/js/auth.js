@@ -18,10 +18,10 @@ $(document).ready(function () {
                 alert(result);
             },
             success: function (result) {
-                if (result.retCode==='200'){
+                if (result.retCode === '200') {
                     setUserCookie(result);
                     window.location.href = "/index";
-                }else if(result.retCode==='500'){
+                } else if (result.retCode === '500') {
                     alert(result.retMsg);
                 }
 
@@ -51,8 +51,9 @@ $(document).ready(function () {
         });
     });
 
-    //注销按钮事件
-    $("#logoutButton").click(function (e) {
+    //注销按钮事件 通过事件委托，将子元素的事件绑定到父元素上，子元素被点击之后，事件会冒泡到父元素，由父元素负责捕捉然后触发事件。
+    //防止ajxa加载的元素未能绑定事件
+    $("#centre").on("click", "#logoutButton", function (e) {
         e.preventDefault();
         alert('23');
 
@@ -87,13 +88,12 @@ $(document).ready(function () {
 });
 
 
-
 function setUserInfo(result) {
     if (result.retCode === "200") {
         $("#usernameSpan").text("你好，" + result.data.username);
         $("#centre").html($("#loginedCentre").html());
         $("#loginModal").modal('hide');
-        $("#header_login_tip").text("Hi,"+result.data.username);
+        $("#header_login_tip").text("Hi," + result.data.username);
         $("#register_tip").hide();
         $("#find_pwd_tip").hide();
     } else {
@@ -102,27 +102,35 @@ function setUserInfo(result) {
 }
 
 function setUserCookie(result) {
-    Cookies.set('username',result.data.username);
+    Cookies.set('username', result.data.username);
 }
 
 function getUserAuthStatus() {
-    var username=Cookies.get('username');
-    if (isEmpty(username)){
-
-    }else{
-        $("#usernameSpan").text("你好，" + username);
-        $("#centre").html($("#loginedCentre").html());
-        $("#loginModal").modal('hide');
-        $("#header_login_tip").text("Hi,"+username);
-        $("#register_tip").hide();
-        $("#find_pwd_tip").hide();
-    }
-
+    var loginStatus = false;
+    $.ajax({
+        url: "/isLogined",
+        success: function (result) {
+            loginStatus = result;
+            if (loginStatus) {
+                const username = Cookies.get('username');
+                $("#usernameSpan").text("你好，" + username);
+                $("#centre").html($("#loginedCentre").html());
+                $("#loginModal").modal('hide');
+                $("#header_login_tip").text("Hi," + username);
+                $("#register_tip").hide();
+                $("#find_pwd_tip").hide();
+            } else {
+                Cookies.remove('rememberMe');
+                Cookies.remove('JSESSIONID');
+                Cookies.remove('username');
+                //window.location.href = "/index";
+            }
+        }
+    });
 }
 
 
-
 //判断字符是否为空的方法
-function isEmpty(obj){
+function isEmpty(obj) {
     return typeof obj == "undefined" || obj == null || obj === "";
 }

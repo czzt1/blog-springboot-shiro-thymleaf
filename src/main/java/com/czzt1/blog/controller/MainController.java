@@ -8,8 +8,11 @@ import com.czzt1.blog.pojo.UserInfo;
 import com.czzt1.blog.service.ArticleService;
 import com.czzt1.blog.service.LabelService;
 import com.czzt1.blog.service.impl.DailySentenceServiceImpl;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +53,7 @@ public class MainController {
 
     @RequestMapping(value = {"", "/index"})
     public ModelAndView index(HttpSession session){
+        Subject curUser = SecurityUtils.getSubject();
         return indexAction(session);
     }
 
@@ -76,6 +80,10 @@ public class MainController {
         }
         //每日一句
         modelAndView.addObject("dailySentence",dailySentenceService.getDailySentence());
+        //热门文章
+        modelAndView.addObject("hotArticleList",articleService.getHotArticle());
+        //热门文章
+        modelAndView.addObject("newestArticleList",articleService.getNewestArticle());
         return modelAndView;
     }
 
@@ -88,9 +96,11 @@ public class MainController {
         PageInfo<Article> pageInfo = new PageInfo<Article>(articleList);
         modelAndView.addObject("pageLabel",labelService.getLabelById(articleType));
         modelAndView.addObject("articleList",articleList);
-        modelAndView.addObject("page",new Pagination(pageInfo.getPageNum(),pageNum));
+        modelAndView.addObject("page",new Pagination(pageInfo.getPages(),pageNum));
         //每日一句
         modelAndView.addObject("dailySentence",dailySentenceService.getDailySentence());
+        //热门文章
+        modelAndView.addObject("hotArticleList",articleService.getHotArticle());
         return modelAndView;
     }
 
@@ -102,10 +112,15 @@ public class MainController {
         modelAndView.setViewName("article");
         modelAndView.addObject("article",article);
         //评论
+        PageHelper.startPage(1,pageSize);
         List<Comment> commentList=articleService.getCommentListByArticleId(articleNum);
+        PageInfo<Comment> pageInfo = new PageInfo<Comment>(commentList);
+        modelAndView.addObject("commentPage",new Pagination(pageInfo.getPages(),1));
         modelAndView.addObject("commentList",commentList);
         //每日一句
         modelAndView.addObject("dailySentence",dailySentenceService.getDailySentence());
+        //热门文章
+        modelAndView.addObject("hotArticleList",articleService.getHotArticle());
         return modelAndView;
     }
 

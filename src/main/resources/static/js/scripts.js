@@ -242,6 +242,9 @@ $(function () {
         });
         /*$(".commentlist").append(replace_em(commentContent.val()));*/
         promptBox.fadeOut(100);
+        setTimeout(function(){
+            window.location.reload();
+        },800);
         return false;
     });
 });

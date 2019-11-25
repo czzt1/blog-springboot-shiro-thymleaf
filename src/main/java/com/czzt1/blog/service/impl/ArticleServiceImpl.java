@@ -33,13 +33,17 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> getHotArticle() {
-
-        return null;
+        return articleMapper.getListByHeat();
     }
 
     @Override
     public int getTotalPageNum(int pageSize) {
         int count=articleMapper.countArticle();
         return (int) Math.ceil((double) count / (double) pageSize);
+    }
+
+    @Override
+    public List<Article> getNewestArticle() {
+        return articleMapper.getListByCrtTime();
     }
 }

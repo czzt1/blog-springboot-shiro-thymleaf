@@ -80,8 +80,12 @@ public class ShiroConfig extends UserFilter {
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/article", "anon");
         filterChainDefinitionMap.put("/comment", "anon");
+
+        filterChainDefinitionMap.put("/addcomment", "anon");
+        filterChainDefinitionMap.put("/isLogined", "anon");
         // 除上以外所有url都必须认证通过才可以访问，未通过认证自动访问LoginUrl
-        filterChainDefinitionMap.put("/**", "authc");
+        //filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/**", "anon");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;

@@ -15,6 +15,9 @@
     <script src="/static/js/jquery-2.1.4.min.js"></script>
     <script src="/static/js/nprogress.js"></script>
     <script src="/static/js/jquery.lazyload.min.js"></script>
+    <script src="/static/js/js.cookie.min.js"></script>
+    <script src="/static/js/auth.js" type="text/javascript"></script>
+    <script src="/static/js/articlePage.js" type="text/javascript"></script>
     <!--<script src="/static/js/comment.js" type="text/javascript"></script>-->
     <!--[if gte IE 9]>
     <script src="/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
@@ -101,8 +104,8 @@
                                                                                  width="20"/>表情</span>
                                 <div class="comment-prompt"><i class="fa fa-spin fa-circle-o-notch"></i> <span
                                         class="comment-prompt-text"></span></div>
-                                <input class="articleid" type="hidden" th:value="${article.getId()}"/>
-                                <button  id="comment-submit" name="comment-submit" tabindex="5"
+                                <input class="articleid" th:value="${article.getId()}" type="hidden"/>
+                                <button id="comment-submit" name="comment-submit" tabindex="5"
                                         type="button">评论
                                 </button>
                             </div>
@@ -111,20 +114,37 @@
                 </form>
             </div>
             <div id="postcomments">
-                <ol class="commentlist"  th:each="comment:${commentList}">
-                    <li class="comment-content"><span class="comment-f">#1</span>
-                        <div class="comment-avatar"><img alt="" class="avatar"  th:src="${comment.getUserPic()}" src=""/>
+                <ol class="commentlist">
+                    <li class="comment-content" th:each="comment:${commentList}"><span class="comment-f">#1</span>
+                        <div class="comment-avatar"><img alt="" class="avatar" src="" th:src="${comment.getUserPic()}"/>
                         </div>
                         <div class="comment-main">
-                            <p>来自<span class="address"  th:text="${comment.getAuthor_area()}"></span>的用户<span
+                            <p>来自<span class="address" th:text="${comment.getAuthor_area()}"></span>的用户<span
                                     class="time" th:text="${comment.getComment_time()}"></span><br/>
                                 <span th:utext="${comment.getContent()}"></span></p>
                         </div>
                     </li>
                 </ol>
-
-                <div class="quotes"><span class="disabled">首页</span><span class="disabled">上一页</span><a class="current">1</a><a
-                        href="">2</a><span class="disabled">下一页</span><span class="disabled">尾页</span></div>
+                <script th:inline="javascript">
+                    const articleId = [[${article.getId()}]];
+                    //var dd="&&"+"<";
+                </script>
+                <nav class="pagination" th:if="${commentPage.getTotalPageNum()!=0}">
+                    <ul>
+                        <li class="prev-page" th:if="${commentPage.getCurPageNum()!=1}">
+                            <a th:href="'/category/2/'+${commentPage.getCurPageNum()-1}">上一页</a>
+                        </li>
+                        <div th:each="curPageNum : ${#numbers.sequence(1,commentPage.getTotalPageNum())}"
+                             th:switch="${curPageNum}==${commentPage.getCurPageNum()}">
+                            <li class="active" id="curActive" th:case="true"><span th:text="${curPageNum}"></span></li>
+                            <li th:class="'pageNum'+${curPageNum}" th:case="false"><a class="pageButton" th:text="${curPageNum}"></a></li>
+                        </div>
+                        <li class="next-page" th:if="${commentPage.getTotalPageNum()!=commentPage.getCurPageNum()}">
+                            <a>下一页</a>
+                        </li>
+                        <li><span id="pageTotalSpan" th:text="'共'+${commentPage.getTotalPageNum()}+'页'"></span></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

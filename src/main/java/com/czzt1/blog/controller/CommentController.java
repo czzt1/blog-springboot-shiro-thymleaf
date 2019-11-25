@@ -1,17 +1,20 @@
 package com.czzt1.blog.controller;
 
 import com.czzt1.blog.pojo.Comment;
+import com.czzt1.blog.service.ArticleService;
 import com.czzt1.blog.service.CommentService;
 import com.czzt1.blog.service.DateService;
 import com.czzt1.blog.service.IpService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +28,10 @@ public class CommentController {
     IpService ipService;
     @Resource
     DateService dateService;
+    @Value("${pageSize}")
+    private int pageSize;
+    @Resource
+    private ArticleService articleService;
 
     @ResponseBody
     @PostMapping(value = "/comment")
@@ -36,5 +43,17 @@ public class CommentController {
         comment.setComment_time(new Date());
         commentService.addComment(comment);
         return "S";
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/comment/{articleId}/{pageNum}")
+    public Map<String,Object> getCommentPage(@PathVariable int articleId, @PathVariable int pageNum){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Comment> commentList=articleService.getCommentListByArticleId(articleId);
+        PageInfo<Comment> pageInfo=new PageInfo<>(commentList);
+        Map<String,Object> result=new HashMap<>(2);
+        result.put("page",pageInfo);
+        result.put("commentList",commentList);
+        return result;
     }
 }

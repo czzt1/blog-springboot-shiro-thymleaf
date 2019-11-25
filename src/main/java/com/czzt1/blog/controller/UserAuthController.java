@@ -20,7 +20,7 @@ import java.util.Map;
 @Controller
 public class UserAuthController {
 
-    private Logger logger= LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ResponseBody
     @PostMapping("/login")
@@ -45,4 +45,11 @@ public class UserAuthController {
         redirectAttributes.addFlashAttribute("message", "您已安全退出");
         return "index";
     }*/
+
+    @ResponseBody
+    @GetMapping("/isLogined")
+    public boolean isLogined() {
+        Subject curUser = SecurityUtils.getSubject();
+        return curUser.isAuthenticated();
+    }
 }
