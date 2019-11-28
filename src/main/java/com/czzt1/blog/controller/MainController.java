@@ -15,6 +15,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -124,10 +125,48 @@ public class MainController {
         return modelAndView;
     }
 
+    @GetMapping(value = "/search")
+    public ModelAndView search(String keyword){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("search");
+        PageHelper.startPage(1,pageSize);
+        List<Article> articleList=articleService.searchByKeyWord(keyword);
+        PageInfo<Article> pageInfo = new PageInfo<Article>(articleList);
+        modelAndView.addObject("articleList",articleList);
+        modelAndView.addObject("page",new Pagination(pageInfo.getPages(),1));
+        //每日一句
+        modelAndView.addObject("dailySentence",dailySentenceService.getDailySentence());
+        //热门文章
+        modelAndView.addObject("hotArticleList",articleService.getHotArticle());
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/admin",method = RequestMethod.GET)
     public ModelAndView admin() {
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("admin");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/tags",method = RequestMethod.GET)
+    public ModelAndView tags() {
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("tags");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/readers",method = RequestMethod.GET)
+    public ModelAndView readers() {
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("readers");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/links",method = RequestMethod.GET)
+    public ModelAndView links() {
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("links");
+        return modelAndView;
+    }
+
 }

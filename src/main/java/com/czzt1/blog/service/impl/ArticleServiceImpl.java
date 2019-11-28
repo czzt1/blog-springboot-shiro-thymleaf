@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author breeze1
+ */
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
@@ -45,5 +48,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getNewestArticle() {
         return articleMapper.getListByCrtTime();
+    }
+
+    @Override
+    public List<Article> searchByKeyWord(String keyWord) {
+        return articleMapper.searchByKeyWord(keyWord);
     }
 }

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="header">
     <nav class="navbar navbar-default" id="navbar">
         <div class="container">
             <div class="header-topbar hidden-xs link-border">
                 <ul class="site-nav topmenu">
-                    <li><a href="/tags.html">标签云</a></li>
-                    <li><a href="/readers.html" rel="nofollow">读者墙</a></li>
-                    <li><a href="/links.html" rel="nofollow">友情链接</a></li>
+                    <li><a href="/tags">标签云</a></li>
+                    <li><a href="/readers" rel="nofollow">读者墙</a></li>
+                    <li><a href="/links" rel="nofollow">友情链接</a></li>
                     <li class="dropdown"><a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
                                             data-toggle="dropdown" rel="nofollow" role="button">关注本站 <span
                             class="caret"></span></a>
@@ -30,18 +30,18 @@
                 <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#header-navbar"
                         data-toggle="collapse" type="button"><span class="sr-only"></span> <span
                         class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-                <h1 class="logo hvr-bounce-in"><a href="" title=""><img alt="" src="/static/images/logo.png"></a></h1>
+                <h1 class="logo hvr-bounce-in"><a href="/index" title=""><img alt="" src="/static/images/logo.png"></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="header-navbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden-index active"><a data-cont="异清轩首页" href="/index">异清轩首页</a></li>
                     <li><a href="/category/1/1">前端技术</a></li>
                     <li><a href="/category/2/1">后端程序</a></li>
-                    <li><a href="/category/1">管理系统</a></li>
+                    <li><a href="/admin">管理系统</a></li>
                     <li><a href="/category/1">授人以渔</a></li>
                     <li><a href="/category/1">程序人生</a></li>
                 </ul>
-                <form action="/Search" class="navbar-form visible-xs" method="post">
+                <form action="/search" class="navbar-form visible-xs" method="get">
                     <div class="input-group">
                         <input autocomplete="off" class="form-control" maxlength="20" name="keyword"
                                placeholder="请输入关键字"
@@ -90,7 +90,7 @@
                     <p>
                         <br/><br/>
                         <span id="usernameSpan"></span>
-                        <button id="logoutButton" class="btn btn-primary">注销</button>
+                        <button class="btn btn-primary" id="logoutButton">注销</button>
                     </p>
                 </div>
                 <div class="tab-pane contact" id="contact" role="tabpanel">
@@ -101,7 +101,7 @@
             </div>
         </div>
         <div class="widget widget_search">
-            <form action="/Search" class="navbar-form" method="post">
+            <form action="/search" class="navbar-form" method="get">
                 <div class="input-group">
                     <input autocomplete="off" class="form-control" maxlength="15" name="keyword"
                            placeholder="请输入关键字"
@@ -125,13 +125,90 @@
     <div class="widget widget_hot">
         <h3>热门文章</h3>
         <ul th:each="hotArticle : ${hotArticleList}">
-            <li><a th:href="'/article/'+${#strings.toString(hotArticle.getId())}"><span class="thumbnail"><img alt="" class="thumb"
-                                                        data-original="/static/images/excerpt.jpg"
-                                                        src="/static/images/excerpt.jpg"></span><span
-                    class="text" th:text="${hotArticle.getTitle()}"></span><span class="muted" th:text="${hotArticle.getCrt_date()}"><i
-                    class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted" th:text="'共'+${hotArticle.getView_count()}+'人围观'"><i
+            <li><a th:href="'/article/'+${#strings.toString(hotArticle.getId())}"><span class="thumbnail"><img alt=""
+                                                                                                               class="thumb"
+                                                                                                               data-original="/static/images/excerpt.jpg"
+                                                                                                               src="/static/images/excerpt.jpg"></span><span
+                    class="text" th:text="${hotArticle.getTitle()}"></span><span class="muted"
+                                                                                 th:text="${hotArticle.getCrt_date()}"><i
+                    class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"
+                                                                                th:text="'共'+${hotArticle.getView_count()}+'人围观'"><i
                     class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
         </ul>
+    </div>
+    <!--登录注册模态框-->
+    <div aria-labelledby="loginModalLabel" class="modal fade user-select" id="loginModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="" id="loginForm" method="get">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="loginModalLabel">登录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="loginModalUserNmae">用户名</label>
+                            <input autocomplete="off" autofocus class="form-control" id="loginModalUserNmae"
+                                   maxlength="15"
+                                   placeholder="请输入用户名" required type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginModalUserPwd">密码</label>
+                            <input autocomplete="off" class="form-control" id="loginModalUserPwd" maxlength="18"
+                                   placeholder="请输入密码" required type="password">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+                        <button class="btn btn-primary" type="submit">登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--注册对话框-->
+    <div aria-labelledby="loginModalLabel" class="modal fade user-select" id="registerModal" role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="" id="registerForm" method="get">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="registerModalLabel">注册</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="registerModalUserNmae">用户名</label>
+                            <input autocomplete="off" autofocus class="form-control" id="registerModalUserNmae"
+                                   maxlength="15"
+                                   placeholder="请输入用户名" required type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerModalNickName">昵称</label>
+                            <input autocomplete="off" autofocus class="form-control" id="registerModalNickName"
+                                   maxlength="15"
+                                   placeholder="请输入用户名" required type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerModalUserPwd">密码</label>
+                            <input autocomplete="off" class="form-control" id="registerModalUserPwd" maxlength="18"
+                                   placeholder="请输入密码" required type="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginModalUserPwd">密码</label>
+                            <input autocomplete="off" class="form-control" id="registerModalUserPwdRe" maxlength="18"
+                                   placeholder="请再次输入密码" required type="password">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+                        <button class="btn btn-primary" type="submit">注册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -151,4 +228,6 @@
     <a href="#">199</a>
     <a href="#">200</a>
     <a href="#">&gt;</a>
-</div>>
+</div>
+>
+

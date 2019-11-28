@@ -26,28 +26,28 @@ function pageNumClick(e) {
                     "                    </li>");
             }
             //分页页码
-            var lastActiveDom=$("#curActive");
-            var lastPageNum=$("#curActive span").text();
-            var curActiveDom=$(".pageNum"+pageNum);
+            var lastActiveDom = $("#curActive");
+            var lastPageNum = $("#curActive span").text();
+            var curActiveDom = $(".pageNum" + pageNum);
             lastActiveDom.removeClass("active");
             lastActiveDom.removeAttr("id");
-            lastActiveDom.addClass("pageNum"+lastPageNum);
+            lastActiveDom.addClass("pageNum" + lastPageNum);
             lastActiveDom.html("");
             //添加点击事件
             lastActiveDom.click(pageNumClick);
-            lastActiveDom.append("<a class=\"pageButton\">"+lastPageNum+"</a>");
+            lastActiveDom.append("<a class=\"pageButton\">" + lastPageNum + "</a>");
             curActiveDom.html("");
             curActiveDom.addClass("active");
-            curActiveDom.attr("id","curActive");
-            curActiveDom.append("<span>"+pageNum+"</span>");
+            curActiveDom.attr("id", "curActive");
+            curActiveDom.append("<span>" + pageNum + "</span>");
             $(".prev-page").remove();
-            if(pageNum!==1){
+            if (pageNum !== 1) {
                 setLastPageButton();
             }
-            var pageTotalNumStr=$("#pageTotalSpan").text();
-            var pageTotalNum=parseInt(pageTotalNumStr.substring(1,pageTotalNumStr.length-1));
+            var pageTotalNumStr = $("#pageTotalSpan").text();
+            var pageTotalNum = parseInt(pageTotalNumStr.substring(1, pageTotalNumStr.length - 1));
             $(".next-page").show();
-            if(pageNum===pageTotalNum){
+            if (pageNum === pageTotalNum) {
                 $(".next-page").hide();
             }
         }
@@ -55,11 +55,11 @@ function pageNumClick(e) {
 }
 
 //下一页按钮事件
-function nextPageClick(e){
+function nextPageClick(e) {
     e.preventDefault();
     //获取页码
-    var lastPageNum=parseInt($("#curActive span").text());
-    var curPageNum=lastPageNum+1;
+    var lastPageNum = parseInt($("#curActive span").text());
+    var curPageNum = lastPageNum + 1;
     $.ajax({
         url: "/comment/" + articleId + "/" + curPageNum,
         type: "GET",
@@ -80,35 +80,35 @@ function nextPageClick(e){
                     "                    </li>");
             }
             //分页页码
-            var lastActiveDom=$("#curActive");
-            var lastPageNum=$("#curActive span").text();
-            var curActiveDom=$(".pageNum"+curPageNum);
+            var lastActiveDom = $("#curActive");
+            var lastPageNum = $("#curActive span").text();
+            var curActiveDom = $(".pageNum" + curPageNum);
             lastActiveDom.removeClass("active");
             lastActiveDom.removeAttr("id");
-            lastActiveDom.addClass("pageNum"+lastPageNum);
+            lastActiveDom.addClass("pageNum" + lastPageNum);
             lastActiveDom.html("");
             //添加点击事件
             lastActiveDom.click(pageNumClick);
-            lastActiveDom.append("<a class=\"pageButton\">"+lastPageNum+"</a>");
+            lastActiveDom.append("<a class=\"pageButton\">" + lastPageNum + "</a>");
             curActiveDom.html("");
             curActiveDom.addClass("active");
-            curActiveDom.attr("id","curActive");
-            curActiveDom.append("<span>"+curPageNum+"</span>");
+            curActiveDom.attr("id", "curActive");
+            curActiveDom.append("<span>" + curPageNum + "</span>");
             $(".prev-page").remove();
-            if(curPageNum!==1){
+            if (curPageNum !== 1) {
                 setLastPageButton();
             }
-            var pageTotalNumStr=$("#pageTotalSpan").text();
-            var pageTotalNum=parseInt(pageTotalNumStr.substring(1,pageTotalNumStr.length-1));
+            var pageTotalNumStr = $("#pageTotalSpan").text();
+            var pageTotalNum = parseInt(pageTotalNumStr.substring(1, pageTotalNumStr.length - 1));
             $(".next-page").show();
-            if(curPageNum===pageTotalNum){
+            if (curPageNum === pageTotalNum) {
                 $(".next-page").hide();
             }
         }
     })
 }
 
-function setLastPageButton(){
+function setLastPageButton() {
     $(this).text()
     $(".pagination ul").prepend("<li class=\"prev-page\">\n" +
         "                            <a>上一页</a>\n" +
@@ -117,8 +117,8 @@ function setLastPageButton(){
     $(".prev-page a").click(function (e) {
         e.preventDefault();
         //获取页码
-        var lastPageNum=parseInt($("#curActive span").text());
-        var curPageNum=lastPageNum-1;
+        var lastPageNum = parseInt($("#curActive span").text());
+        var curPageNum = lastPageNum - 1;
         $.ajax({
             url: "/comment/" + articleId + "/" + curPageNum,
             type: "GET",
@@ -139,27 +139,27 @@ function setLastPageButton(){
                         "                    </li>");
                 }
                 //分页页码
-                var lastActiveDom=$("#curActive");
-                var lastPageNum=$("#curActive span").text();
-                var curActiveDom=$(".pageNum"+curPageNum);
+                var lastActiveDom = $("#curActive");
+                var lastPageNum = $("#curActive span").text();
+                var curActiveDom = $(".pageNum" + curPageNum);
                 lastActiveDom.removeClass("active");
                 lastActiveDom.removeAttr("id");
-                lastActiveDom.addClass("pageNum"+lastPageNum);
+                lastActiveDom.addClass("pageNum" + lastPageNum);
                 lastActiveDom.html("");
                 //添加点击事件
                 lastActiveDom.click(pageNumClick);
-                lastActiveDom.append("<a class=\"pageButton\">"+lastPageNum+"</a>");
+                lastActiveDom.append("<a class=\"pageButton\">" + lastPageNum + "</a>");
                 curActiveDom.html("");
                 curActiveDom.addClass("active");
-                curActiveDom.attr("id","curActive");
-                curActiveDom.append("<span>"+curPageNum+"</span>");
-                if(curPageNum===1){
+                curActiveDom.attr("id", "curActive");
+                curActiveDom.append("<span>" + curPageNum + "</span>");
+                if (curPageNum === 1) {
                     $(".prev-page").remove();
                 }
-                var pageTotalNumStr=$("#pageTotalSpan").text();
-                var pageTotalNum=parseInt(pageTotalNumStr.substring(1,pageTotalNumStr.length-1));
+                var pageTotalNumStr = $("#pageTotalSpan").text();
+                var pageTotalNum = parseInt(pageTotalNumStr.substring(1, pageTotalNumStr.length - 1));
                 $(".next-page").show();
-                if(curPageNum===pageTotalNum){
+                if (curPageNum === pageTotalNum) {
                     $(".next-page").hide();
                 }
             }

@@ -1,17 +1,13 @@
 package com.czzt1.blog.controller;
 
 import com.czzt1.blog.mapper.UserInfoMapper;
-import com.czzt1.blog.pojo.Comment;
 import com.czzt1.blog.pojo.UserInfo;
 import com.czzt1.blog.service.ArticleService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

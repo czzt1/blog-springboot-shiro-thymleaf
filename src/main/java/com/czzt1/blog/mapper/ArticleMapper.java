@@ -6,7 +6,6 @@ import com.czzt1.blog.pojo.Label;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author czzt1
@@ -26,4 +25,6 @@ public interface ArticleMapper {
     int countArticle();
 
     List<Article> getListByCrtTime();
+
+    List<Article> searchByKeyWord(String keyWord);
 }

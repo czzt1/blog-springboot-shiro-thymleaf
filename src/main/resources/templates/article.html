@@ -137,7 +137,8 @@
                         <div th:each="curPageNum : ${#numbers.sequence(1,commentPage.getTotalPageNum())}"
                              th:switch="${curPageNum}==${commentPage.getCurPageNum()}">
                             <li class="active" id="curActive" th:case="true"><span th:text="${curPageNum}"></span></li>
-                            <li th:class="'pageNum'+${curPageNum}" th:case="false"><a class="pageButton" th:text="${curPageNum}"></a></li>
+                            <li th:case="false" th:class="'pageNum'+${curPageNum}"><a class="pageButton"
+                                                                                      th:text="${curPageNum}"></a></li>
                         </div>
                         <li class="next-page" th:if="${commentPage.getTotalPageNum()!=commentPage.getCurPageNum()}">
                             <a>下一页</a>

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.czzt1.blog.mapper.UserInfoMapper">
     <select id="selectUserByName" parameterType="string" resultType="com.czzt1.blog.pojo.UserInfo">
-        select * from user where username=#{0}
+        select * from User where username=#{0}
     </select>
     <insert id="insertNewUser" parameterType="com.czzt1.blog.pojo.UserInfo">
-        insert into user(username,password,nickname) values (#{username},#{password},#{nickname})
+        insert into User(username,password,nickname) values (#{username},#{password},#{nickname})
     </insert>
 </mapper>

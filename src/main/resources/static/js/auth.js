@@ -20,7 +20,8 @@ $(document).ready(function () {
             success: function (result) {
                 if (result.retCode === '200') {
                     setUserCookie(result);
-                    window.location.href = "/index";
+                    //window.location.href = "/index";
+                    window.location.reload();
                 } else if (result.retCode === '500') {
                     alert(result.retMsg);
                 }
@@ -46,7 +47,7 @@ $(document).ready(function () {
                 "registerModalUserPwd": registerModalUserPwd
             },
             success: function (result) {
-                alert(result.retMsg)
+                alert(result.msg);
             }
         });
     });

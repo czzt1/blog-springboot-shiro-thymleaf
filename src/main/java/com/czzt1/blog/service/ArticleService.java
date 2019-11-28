@@ -42,4 +42,11 @@ public interface ArticleService {
      * @return 最新文章列表
      */
     public List<Article> getNewestArticle();
+
+    /**
+     * 用关键词查询
+     * @param keyWord 关键词
+     * @return  查询结果
+     */
+    public List<Article> searchByKeyWord(String keyWord);
 }
