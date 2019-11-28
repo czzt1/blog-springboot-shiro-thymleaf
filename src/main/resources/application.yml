@@ -4,9 +4,9 @@ spring:
   mvc:
     static-path-pattern: /static/**
   datasource:
-    url: jdbc:mariadb://106.13.23.58:23306/blog
-    username: blog
-    password: blog123
+    url: jdbc:mariadb://
+    username:
+    password:
     driver-class-name: org.mariadb.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
