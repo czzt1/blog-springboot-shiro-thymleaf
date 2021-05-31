@@ -18,7 +18,7 @@ public class BlogApplication extends SpringBootServletInitializer {
     }
 
     /**
-     * 为了打包springboot项目
+     * 为了打包springboot项目 ???
      */
     @Override
     protected SpringApplicationBuilder configure(
